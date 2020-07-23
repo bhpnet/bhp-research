@@ -13,7 +13,8 @@ okchaincli keys add <key-name> <flags>
 - 帮助说明
 
 ```shell script
-root@bhp-cosmos2:/home/gaia# gaiacli keys add --help
+gaiacli keys add --help
+
 Derive a new private key and encrypt to disk.
 Optionally specify a BIP39 mnemonic, a BIP39 passphrase to further secure the mnemonic,
 and a bip32 HD path to derive a specific account. The key will be stored under the given name
@@ -65,7 +66,8 @@ flags:
  
 - 示例
 ```shell script
-root@iZwz9af3cg1abi4nmbogwxZ:~# gaiacli keys add --help
+gaiacli keys add --help
+
 Derive a new private key and encrypt to disk.
 Optionally specify a BIP39 mnemonic, a BIP39 passphrase to further secure the mnemonic,
 and a bip32 HD path to derive a specific account. The key will be stored under the given name
@@ -162,7 +164,8 @@ okchiancli keys list
 ```
 - 示例
 ```shell script
-root@iZwz9af3cg1abi4nmbogwxZ:~# okchaincli keys list
+okchaincli keys list
+
 [
   {
     "name": "lpl",
@@ -176,7 +179,7 @@ root@iZwz9af3cg1abi4nmbogwxZ:~# okchaincli keys list
     "address": "okchain1a8syfr3vdhrgu03nqzhj43u7v5ed8305m3g6sm",
     "pubkey": "okchainpub1addwnpepqtku4frp65x5g6w3t40ejnmtvd3ysl4l4h9hujvz5cc9kv9hxzqax7lyuet"
   }
-]root@iZwz9af3cg1abi4nmbogwxZ:~#
+]
 ```
 ## okchaincli query account
 该命令用于查询特定地址的余额信息。
@@ -193,7 +196,8 @@ okchaincli query account <account_cosmos>
 ```
 - 示例
 ```shell script
-root@iZwz9af3cg1abi4nmbogwxZ:~# okchaincli query account okchain1a8syfr3vdhrgu03nqzhj43u7v5ed8305m3g6sm
+okchaincli query account okchain1a8syfr3vdhrgu03nqzhj43u7v5ed8305m3g6sm
+
 {
   "type": "cosmos-sdk/Account",
   "value": {
@@ -221,12 +225,12 @@ root@iZwz9af3cg1abi4nmbogwxZ:~# okchaincli query account okchain1a8syfr3vdhrgu03
 ## okchaincli tx send
 - 发送令牌到另一个地址
 ```shell script
-okchaincli tx send <sender_key_name_or_address> <recipient_address> 10faucetToken
-  --chain-id=<chain_id>
+okchaincli tx send <sender_key_name_or_address> <recipient_address> 10faucetToken --chain-id=<chain_id>
 ```
 - 示例
 ```shell script
-root@iZwz9af3cg1abi4nmbogwxZ:~# okchaincli tx send okchain1a8syfr3vdhrgu03nqzhj43u7v5ed8305m3g6sm okchain179lql7dgsd5sf0h739sl0qlwncvpza3ge5audn 20okt --fees=0.01tokt
+okchaincli tx send okchain1fvq6et9xzwlhrsr6m8z2wuh52v26u7nefq0uuq okchain1lfeaxj0z2sefwgcac2fy5c7j4a0lppkmmhzflm 100000tokt --fees=0.01tokt --home /root/okchain/build/node0/okchaincli/ --chain-id=chain-u00LC1
+
 {
   "chain_id": "testing",
   "account_number": "1",
@@ -298,7 +302,7 @@ Global Flags:
 ```
 - 实际操作
 ```shell script
-root@iZwz9af3cg1abi4nmbogwxZ:~# okchaincli query tx ECEA5CB94724CD120D8DA877B8C724988BDD328E56539E90EF9E1EEE214B3F24
+okchaincli query tx ECEA5CB94724CD120D8DA877B8C724988BDD328E56539E90EF9E1EEE214B3F24
 {
   "height": "6029699",
   "txhash": "ECEA5CB94724CD120D8DA877B8C724988BDD328E56539E90EF9E1EEE214B3F24",
@@ -408,7 +412,7 @@ root@iZwz9af3cg1abi4nmbogwxZ:~# okchaincli query tx ECEA5CB94724CD120D8DA877B8C7
 - 帮助说明
 
 ```shell script
-root@iZwz9af3cg1abi4nmbogwxZ:~# okchaincli tx token issue -h
+okchaincli tx token issue -h
 issue a token
 
 Usage:
