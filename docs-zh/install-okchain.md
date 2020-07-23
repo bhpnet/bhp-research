@@ -22,7 +22,7 @@ go version
 git clone -b <latest-release-tag> https://github.com/okex/okchain
 cd okchain && make install
 ```
-如果环境变量配置无误，则通过运行以上命令即可完成gaia的安装。现在检查您的gaia版本是否正确：
+如果环境变量配置无误，则通过运行以上命令即可完成okchain的安装。现在检查您的okchain版本是否正确：
 ```shell script
 okchaind version --long
 okchaincli version --long

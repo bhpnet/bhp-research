@@ -18,7 +18,7 @@ emintcli config trust-node true
 
 # 测试环境可以执行下方命令，正式环境不用加 emintcli config keyring-backend test
 
-# 创建一个钱包作为您的验证人帐户，钱包名为node1
+# 创建一个钱包作为您的验证器帐户，钱包名为node1
 emintcli keys add node1
 
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
@@ -26,7 +26,7 @@ emintcli keys add node1
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
 emintd add-genesis-account $(emintcli keys show node1 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
-# 生成创建验证人的交易，gentx存储在~/.emintd/config/中
+# 生成创建验证器的交易，gentx存储在~/.emintd/config/中
 # 测试环境可选：emintd gentx --name node0 --keyring-backend test
 emintd gentx --name node1
 
@@ -52,7 +52,7 @@ emintcli config trust-node true
 
 # 测试环境可以执行下方命令，正式环境不用加：emintcli config keyring-backend test
 
-# 创建一个钱包作为您的验证人帐户，钱包名为node1
+# 创建一个钱包作为您的验证器帐户，钱包名为node1
 emintcli keys add node2
 
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
@@ -60,7 +60,7 @@ emintcli keys add node2
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
 emintd add-genesis-account $(emintcli keys show node2 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
-# 生成创建验证人的交易，gentx存储在~/.emintd/config/中
+# 生成创建验证器的交易，gentx存储在~/.emintd/config/中
 # 测试环境可选：emintd gentx --name node2 --keyring-backend test
 emintd gentx --name node2
 
@@ -86,7 +86,7 @@ emintcli config trust-node true
 
 # 测试环境可选，正式环境不用加：emintcli config keyring-backend test
 
-# 创建一个钱包作为您的验证人帐户，钱包名为node2
+# 创建一个钱包作为您的验证器帐户，钱包名为node2
 emintcli keys add node3
 
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
@@ -94,7 +94,7 @@ emintcli keys add node3
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
 emintd add-genesis-account $(emintcli keys show node3 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
-# 生成创建验证人的交易，gentx存储在~/.emintd/config/中
+# 生成创建验证器的交易，gentx存储在~/.emintd/config/中
 # 测试环境可选：emintd gentx --name node3 --keyring-backend test
 emintd gentx --name node3
 
@@ -120,7 +120,7 @@ emintcli config trust-node true
 
 # 测试环境可选：emintcli config keyring-backend test
 
-# 创建一个钱包作为您的验证人帐户，钱包名为node3
+# 创建一个钱包作为您的验证器帐户，钱包名为node3
 emintcli keys add node4
 
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
@@ -128,7 +128,7 @@ emintcli keys add node4
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
 emintd add-genesis-account $(emintcli keys show node4 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
-# 生成创建验证人的交易，gentx存储在~/.emintd/config/中
+# 生成创建验证器的交易，gentx存储在~/.emintd/config/中
 # 测试环境可选：emintd gentx --name node3 --keyring-backend test
 emintd gentx --name node4
 
@@ -260,7 +260,7 @@ moniker = "node0"
     }
   ]
 ```
-- genesis.genutil.gentxs 添加其他三个验证人属性（把其他节点`genesis.json`文件中的验证人属性复制粘贴到这里）
+- genesis.genutil.gentxs 添加其他三个验证器属性（把其他节点`genesis.json`文件中的验证器属性复制粘贴到这里）
 ```shell script
 "gentxs": [
         {
@@ -467,7 +467,7 @@ emintd init node5 --chain-id 2020
 # 启动节点（也可使用 nohup 或 systemd 等方式后台运行）
 emintd start
 ```
-### 三、升级成为验证人节点
+### 三、升级成为验证器节点
 ```shell script
 # 创建一个新的密钥（钱包），或通过助记词/密钥库导入已有密钥。执行该命令后输入并确认密码，将生成一个新的密钥。密码至少8个字符。
 # eg:emintcli keys add node5
@@ -494,9 +494,9 @@ emintcli tx send cosmos1lpa40757ka492ewy225qmmdcwr3gmdacmjm0yt cosmos1hwp0fss8ng
 # 如果输出为 false, 则表明您的节点已经完成同步
 emintcli status | jq .sync_info.catching_up
 ```
-- 创建验证人
+- 创建验证器
 
-只有节点已完成同步时，才可以运行以下命令将您的节点升级为验证人：
+只有节点已完成同步时，才可以运行以下命令将您的节点升级为验证器：
 
 下面命令中的moniker、chain_id、key_name设置为自己的
 ```shell script
@@ -512,7 +512,7 @@ emintcli tx staking create-validator \
   --gas-prices="0.025stake" \
   --from=node5
 ```
-然后查询该交易hash结果查看是否成功成为验证人
+然后查询该交易hash结果查看是否成功成为验证器
 ```
 emintcli query tx 6B913D5635953D7DC2D05DC03807C1433F00CBB1343EA6E0FBE3A8F403981961 | jq
 ```
@@ -613,7 +613,7 @@ I[2020-07-03|18:12:29.026] Executed block                               module=s
 I[2020-07-03|18:12:29.027] Updates to validators                        module=state updates=29BEC18C3707C1C0F91232D03AD04796DC3A62BC:1
 I[2020-07-03|18:12:29.029] Committed state                              module=state height=647 txs=1 appHash=CAFD84C9B28E3A8FCA62A920E8E9223AE1CBB044D421697889CCD461D133EBEB
 ```
-#### 查看所有验证人
+#### 查看所有验证器
 ```shell script
 emintcli query staking validators
 ```

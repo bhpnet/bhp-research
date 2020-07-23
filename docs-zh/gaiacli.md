@@ -829,7 +829,7 @@ gaiacli query block 1936 --chain-id=testing
 }
 ```
 ## gaiacli query tendermint-validator-set
-在指定高度获取全部验证人。如果未指定高度，则将使用最新高度作为默认高度。
+在指定高度获取全部验证器。如果未指定高度，则将使用最新高度作为默认高度。
 - 帮助说明
 ```shell script
 root@bhp-cosmos2:~# gaiacli query tendermint-validator-set -h
@@ -852,7 +852,7 @@ Global Flags:
       --trace             print out full stack trace on errors
 
 ```
-- 按高度获取验证人
+- 按高度获取验证器
 ```shell script
 gaiacli query tendermint-validator-set 1936 --chain-id testing
 {
@@ -867,7 +867,7 @@ gaiacli query tendermint-validator-set 1936 --chain-id testing
     ]
 }
 ```
-- 获取最新的验证人
+- 获取最新的验证器
 ```shell script
 gaiacli query tendermint-validator-set --chain-id testing
 ```

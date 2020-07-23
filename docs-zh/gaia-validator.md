@@ -1,4 +1,4 @@
-### 普通节点升级为验证人节点
+### 普通节点升级为验证器节点
 #### 创建钱包
 - 创建一个新的密钥（钱包），或通过助记词/密钥库导入已有密钥。执行该命令后输入并确认密码，将生成一个新的密钥。密码至少8个字符。
 ```shell script
@@ -63,8 +63,8 @@ root@bhp-cosmos2:~# gaiacli status | jq
   }
 }
 ```
-#### 创建验证人
-只有节点已完成同步时，才可以运行以下命令将您的节点升级为验证人：
+#### 创建验证器
+只有节点已完成同步时，才可以运行以下命令将您的节点升级为验证器：
 
 下面命令中的moniker、chain_id、key_name设置为自己的
 
@@ -127,12 +127,12 @@ gaiacli tx staking create-validator \
     ]
 }
 ```
-然后查询该交易hash结果查看是否成功成为验证人
+然后查询该交易hash结果查看是否成功成为验证器
 ```shell script
 gaiacli query tx FE6B5714B99392ED15353C3F3A9165CAB4A92C075290F47F4D9D59D7B5464EC0 | jq
 ```
 
-### 查询所有验证人
+### 查询所有验证器
 ```shell script
 gaiacli query staking validators
 ```
@@ -267,8 +267,8 @@ gaiacli query staking validators
 ]
 ```
 
-### 查询自己的验证人节点
-查询验证人地址的编码格式的钱包地址
+### 查询自己的验证器节点
+查询验证器地址的编码格式的钱包地址
 ```shell script
 gaiacli keys show [name [name...]] [flags]
 # 示例
@@ -284,8 +284,8 @@ gaiacli keys show bhp --bech=val
 }
 ```
 
-### 查看验证人信息
-通过地址查询验证人
+### 查看验证器信息
+通过地址查询验证器
 ```shell script
 gaiacli query staking validator cosmosvaloper1v9sgfualu5uqdly0kvavjg4z5ppalfhkdlqrsc
 ```
@@ -318,7 +318,7 @@ gaiacli query staking validator cosmosvaloper1v9sgfualu5uqdly0kvavjg4z5ppalfhkdl
 }
 ```
 
-### 查询验证人签名信息
+### 查询验证器签名信息
 ```shell script
 gaiacli query slashing signing-info <validator-pubkey>\
   --chain-id=<chain_id>
@@ -338,16 +338,16 @@ gaiacli query slashing signing-info cosmosvalconspub1zcjduepq04sgtf5pgde6r47hrzh
 }
 ```
 
-### 编辑验证人信息
-修改验证的的参数，包括佣金比率，验证人节点名称以及其他描述信息。
+### 编辑验证器信息
+修改验证的的参数，包括佣金比率，验证器节点名称以及其他描述信息。
 
 |  名称   | 类型  | 必须  | 默认  | 描述  |
 |  ----  | ----  | ----  | ----  | ----  |
 | --commission-rate  | float |  |  | 佣金比率 |
-| --moniker  | string |  |  | 验证人名称 |
+| --moniker  | string |  |  | 验证器名称 |
 | --identity  | string  |  |  | 身份签名 |
 | --website  | string |  |  | 网址 |
-| --details  | string |  |  | 验证人节点详细信息 |
+| --details  | string |  |  | 验证器节点详细信息 |
 
 设置之前：
 ```shell script
@@ -556,8 +556,8 @@ root@bhp-cosmos2:~/.gaiad# gaiacli query tx B860DC121A3D24229BE8C32812425EF6B476
 ### 委托人指南
 请参阅[委托人指南](gaia-delegator.md )。
 
-### 查看验证人节点是否正常运行
-如果该命令返回以下类似内容，则表明验证人节点处于活跃状态：
+### 查看验证器节点是否正常运行
+如果该命令返回以下类似内容，则表明验证器节点处于活跃状态：
 ```shell script
 gaiacli query tendermint-validator-set
 # 或者
@@ -602,8 +602,8 @@ gaiacli query tendermint-validator-set | grep "$(gaiad tendermint show-validator
 }
 ```
 
-### 如何备份验证人节点
-安全备份验证人节点私钥非常重要，这是恢复验证人节点的唯一方法。请注意，这里指的是Tendermint密钥。
+### 如何备份验证器节点
+安全备份验证器节点私钥非常重要，这是恢复验证器节点的唯一方法。请注意，这里指的是Tendermint密钥。
 如果您使用的是软件签名（tendermint的默认签名方法），则您的Tendermint密钥位于<gaiad-home>/config/priv_validator.json中。最简单的方法是备份整个config文件夹。
 
 
@@ -611,4 +611,4 @@ gaiacli query tendermint-validator-set | grep "$(gaiad tendermint show-validator
 >
 >重要
 >
->一定要备份好 home（默认为〜/.gaiad/）目录中的 config 目录！如果您的服务器磁盘损坏或您准备迁移服务器，这是恢复验证人的唯一方法。
+>一定要备份好 home（默认为〜/.gaiad/）目录中的 config 目录！如果您的服务器磁盘损坏或您准备迁移服务器，这是恢复验证器的唯一方法。

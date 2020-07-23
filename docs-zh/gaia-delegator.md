@@ -1,6 +1,6 @@
 
-### 委托一定数量的token给验证人
-从自己的钱包中委托一定数量的token给验证人
+### 委托一定数量的token给验证器
+从自己的钱包中委托一定数量的token给验证器
 ```shell script
 gaiacli tx staking delegate cosmosvaloper1v9sgfualu5uqdly0kvavjg4z5ppalfhkdlqrsc 1000stake --from bhp
 ```
@@ -228,7 +228,7 @@ root@bhp-cosmos2:~# gaiacli query account cosmos1v9sgfualu5uqdly0kvavjg4z5ppalfh
 
 ```
 ### 解绑一定数量的shares
-从某个验证人解绑一定数量的shares
+从某个验证器解绑一定数量的shares
 ```shell script
  gaiacli tx staking unbond [validator-addr] [amount] [flags]
 # 示例
@@ -236,9 +236,9 @@ gaiacli tx staking unbond cosmosvaloper1gghjut3ccd8ay0zduzj64hwre2fxs9ldmqhffj 1
 ```
 
 ### 转委托
-委托人可以将其抵押的token从一个验证人转移到另一个验证人。
-- src-validator-addr：源验证者bech地址
-- dst-validator-addr: 目标验证者bech地址
+委托人可以将其抵押的token从一个验证器转移到另一个验证器。
+- src-validator-addr：源验证器bech地址
+- dst-validator-addr: 目标验证器bech地址
 - mykey：自己的钱包名称
 ```shell script
 gaiacli tx staking redelegate [src-validator-addr] [dst-validator-addr] [amount] [flags]

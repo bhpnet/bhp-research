@@ -32,14 +32,14 @@ emintcli config trust-node true
 
 emintcli config keyring-backend test
 
-# 创建一个钱包作为您的验证人帐户，钱包名为node0(可以自定义设置)
+# 创建一个钱包作为您的验证器帐户，钱包名为node0(可以自定义设置)
 emintcli keys add node0
 
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
 # 注意: 此命令使您可以设置通证数量。确保此帐户有币，这是测试网络上唯一的质押通证
 emintd add-genesis-account $(emintcli keys show node0 -a) 1000000000000000000photon,1000000000000000000stake
 
-# 生成创建验证人的交易，gentx存储在~/.emintd/config/中
+# 生成创建验证器的交易，gentx存储在~/.emintd/config/中
 emintd gentx --name bhptest2 --keyring-backend test
 
 # 将生成的质押交易添加到创世文件

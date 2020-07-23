@@ -10,7 +10,7 @@ cd $HOME
 # Initialize the genesis.json file that will help you to bootstrap the network
 gaiad init --chain-id=testing testing
 
-# 创建一个钱包作为您的验证人帐户
+# 创建一个钱包作为您的验证器帐户
 gaiacli keys add validator
 
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
@@ -18,7 +18,7 @@ gaiacli keys add validator
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
 gaiad add-genesis-account $(gaiacli keys show validator -a) 1000000000stake,1000000000validatortoken
 
-# 生成创建验证人的交易，gentx存储在~/.gaiad/config/中
+# 生成创建验证器的交易，gentx存储在~/.gaiad/config/中
 gaiad gentx --name validator
 
 # 将生成的质押交易添加到创世文件：Add the generated bonding transaction to the genesis file
@@ -43,11 +43,11 @@ gaiad tendermint show-node-id
 ```
 - 查询Tendermint Pubkey，用于identify your validator,并将用于在共识过程中签署Pre-vote/Pre-commit。
 
-Tendermint Key存储在priv_validator.json中，创建验证人后，请一定要记得备份。
+Tendermint Key存储在priv_validator.json中，创建验证器后，请一定要记得备份。
 ```shell script
 gaiad tendermint show-validator
 ```
-- 查询bech32前缀验证人地址
+- 查询bech32前缀验证器地址
 ```shell script
 gaiad tendermint show-address
 ```
@@ -172,7 +172,7 @@ gaiacli keys list --home ./build/node0/gaiacli
 # 初始化节点
 gaiad init <your_custom_moniker> --chain-id=chain-G7L8cJ
 
-将上述多节点测试网络中验证人节点中的`config.toml`和`genesis.json`替换默认路径是`~/.gaiad/config/`目录下的对应文件
+将上述多节点测试网络中验证器节点中的`config.toml`和`genesis.json`替换默认路径是`~/.gaiad/config/`目录下的对应文件
 
 #启动节点
 gaiad start
@@ -183,8 +183,8 @@ gaiad start
 > 可以添加几个社区公开节点到config.toml中的persistent_peers。
 
 
-### 四、普通节点升级为验证人节点
-请参阅[验证人节点指南](gaia-validator.md )。
+### 四、普通节点升级为验证器节点
+请参阅[验证器节点指南](gaia-validator.md )。
 
 ### 扩展
 - [Gaia命令行客户端部分命令使用指南](gaiacli.md )
