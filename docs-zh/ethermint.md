@@ -22,7 +22,7 @@ nohup ./init.sh > init.log &
 首先创建用于签署创始交易的密钥：(代码中的mykey替换成自己定义的字段,比如换成：bhptest2)
 ```
 # 初始化genesis.json 文件
-emintd init mymoniker --chain-id 8
+ethermintd init mymoniker --chain-id 8
 
 # 客户端设置参数
 emintcli config chain-id 8
@@ -37,19 +37,19 @@ emintcli keys add node0
 
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
 # 注意: 此命令使您可以设置通证数量。确保此帐户有币，这是测试网络上唯一的质押通证
-emintd add-genesis-account $(emintcli keys show node0 -a) 1000000000000000000photon,1000000000000000000stake
+ethermintd add-genesis-account $(emintcli keys show node0 -a) 1000000000000000000photon,1000000000000000000stake
 
 # 生成创建验证器的交易，gentx存储在~/.emintd/config/中
-emintd gentx --name bhptest2 --keyring-backend test
+ethermintd gentx --name bhptest2 --keyring-backend test
 
 # 将生成的质押交易添加到创世文件
-emintd collect-gentxs
+ethermintd collect-gentxs
 
 # 验证有效性
-emintd validate-genesis
+ethermintd validate-genesis
 
 # 获取本节点node-id
-emintd start --pruning=nothing
+ethermintd start --pruning=nothing
 ```
 
 #### 启动Ethermint Web3 RPC API

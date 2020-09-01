@@ -24,20 +24,20 @@ ethermintcli keys add node1
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
 # 注意: 此命令使您可以设置通证数量。确保此帐户有币，这是测试网络上唯一的质押通证
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
-emintd add-genesis-account $(ethermintcli keys show node1 -a) 100000000000000000000000000photon,100000000000000000000000000stake
+ethermintd add-genesis-account $(ethermintcli keys show node1 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
 # 生成创建验证器的交易，gentx存储在~/.emintd/config/中
-# 测试环境可选：emintd gentx --name node0 --keyring-backend test
-emintd gentx --name node1
+# 测试环境可选：ethermintd gentx --name node0 --keyring-backend test
+ethermintd gentx --name node1
 
 # 将生成的质押交易添加到创世文件
-emintd collect-gentxs
+ethermintd collect-gentxs
 
 # 验证有效性
-emintd validate-genesis
+ethermintd validate-genesis
 
 # 获取本节点node-id
-emintd tendermint show-node-id
+ethermintd tendermint show-node-id
 ```
 第二个节点：
 ```
@@ -58,20 +58,20 @@ ethermintcli keys add node2
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
 # 注意: 此命令使您可以设置通证数量。确保此帐户有币，这是测试网络上唯一的质押通证
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
-emintd add-genesis-account $(ethermintcli keys show node2 -a) 100000000000000000000000000photon,100000000000000000000000000stake
+ethermintd add-genesis-account $(ethermintcli keys show node2 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
 # 生成创建验证器的交易，gentx存储在~/.emintd/config/中
-# 测试环境可选：emintd gentx --name node2 --keyring-backend test
-emintd gentx --name node2
+# 测试环境可选：ethermintd gentx --name node2 --keyring-backend test
+ethermintd gentx --name node2
 
 # 将生成的质押交易添加到创世文件
-emintd collect-gentxs
+ethermintd collect-gentxs
 
 # 验证有效性
-emintd validate-genesis
+ethermintd validate-genesis
 
 # 获取本节点node-id
-emintd tendermint show-node-id
+ethermintd tendermint show-node-id
 ```
 第三个节点：
 ```
@@ -92,20 +92,20 @@ ethermintcli keys add node3
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
 # 注意: 此命令使您可以设置通证数量。确保此帐户有币，这是测试网络上唯一的质押通证
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
-emintd add-genesis-account $(ethermintcli keys show node3 -a) 100000000000000000000000000photon,100000000000000000000000000stake
+ethermintd add-genesis-account $(ethermintcli keys show node3 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
 # 生成创建验证器的交易，gentx存储在~/.emintd/config/中
-# 测试环境可选：emintd gentx --name node3 --keyring-backend test
-emintd gentx --name node3
+# 测试环境可选：ethermintd gentx --name node3 --keyring-backend test
+ethermintd gentx --name node3
 
 # 将生成的质押交易添加到创世文件
-emintd collect-gentxs
+ethermintd collect-gentxs
 
 # 验证有效性
-emintd validate-genesis
+ethermintd validate-genesis
 
 # 获取本节点node-id
-emintd tendermint show-node-id
+ethermintd tendermint show-node-id
 ```
 第四个节点：
 ```
@@ -126,20 +126,20 @@ ethermintcli keys add node4
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
 # 注意: 此命令使您可以设置通证数量。确保此帐户有币，这是测试网络上唯一的质押通证
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
-emintd add-genesis-account $(ethermintcli keys show node4 -a) 100000000000000000000000000photon,100000000000000000000000000stake
+ethermintd add-genesis-account $(ethermintcli keys show node4 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
 # 生成创建验证器的交易，gentx存储在~/.emintd/config/中
-# 测试环境可选：emintd gentx --name node3 --keyring-backend test
-emintd gentx --name node4
+# 测试环境可选：ethermintd gentx --name node3 --keyring-backend test
+ethermintd gentx --name node4
 
 # 将生成的质押交易添加到创世文件
-emintd collect-gentxs
+ethermintd collect-gentxs
 
 # 验证有效性
-emintd validate-genesis
+ethermintd validate-genesis
 
 # 获取本节点node-id
-emintd tendermint show-node-id
+ethermintd tendermint show-node-id
 ```
 #### 编辑`config.toml`文件
 - 找到任意`nodeN/config`目录下的`config.toml`文件，将四个节点的node-id和ip替换成如下类似内容
@@ -431,7 +431,7 @@ moniker = "node0"
 #### 后台启动
 将四个节点分别以后台守护方式启动并保存日志
 ```shell script
-nohup emintd start > init.log &
+nohup ethermintd start > init.log &
 tail -f init.log
 ```
 
@@ -465,7 +465,7 @@ ethermintd init node5 --chain-id 2020
 # 替换当前`~/.emintd/config`目录下的`config.toml`文件和`genesis.json`文件
 
 # 启动节点（也可使用 nohup 或 systemd 等方式后台运行）
-emintd start
+ethermintd start
 ```
 ### 三、升级成为验证器节点
 ```shell script
@@ -502,7 +502,7 @@ ethermintcli status | jq .sync_info.catching_up
 ```shell script
 ethermintcli tx staking create-validator \
   --amount=1000000stake \
-  --pubkey=$(emintd tendermint show-validator) \
+  --pubkey=$(ethermintd tendermint show-validator) \
   --moniker="node5" \
   --chain-id=2020 \
   --commission-rate="0.10" \

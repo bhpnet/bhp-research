@@ -11,7 +11,7 @@ rm -rf ~/.emint*
 
 当本地区块链数据库以某种方式中断和无法同步或参与共识时，这是有用的。
 ```shell script
-emintd unsafe-reset-all
+ethermintd unsafe-reset-all
 ```
 - 查看网络状态信息
 ```shell script
