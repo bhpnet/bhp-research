@@ -8,23 +8,23 @@
 第一个节点：
 ```
 # 初始化genesis.json 文件：设置网络别名和chain-id(生成`.emintd`目录，初始化配置文件`config`和数据`data`)
-emintd init node1 --chain-id 2020
+ethermintd init node1 --chain-id 2020
 
 # 客户端设置参数
-emintcli config chain-id 2020
-emintcli config output json
-emintcli config indent true
-emintcli config trust-node true
+ethermintcli config chain-id 2020
+ethermintcli config output json
+ethermintcli config indent true
+ethermintcli config trust-node true
 
-# 测试环境可以执行下方命令，正式环境不用加 emintcli config keyring-backend test
+# 测试环境可以执行下方命令，正式环境不用加 ethermintcli config keyring-backend test
 
 # 创建一个钱包作为您的验证器帐户，钱包名为node1
-emintcli keys add node1
+ethermintcli keys add node1
 
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
 # 注意: 此命令使您可以设置通证数量。确保此帐户有币，这是测试网络上唯一的质押通证
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
-emintd add-genesis-account $(emintcli keys show node1 -a) 100000000000000000000000000photon,100000000000000000000000000stake
+emintd add-genesis-account $(ethermintcli keys show node1 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
 # 生成创建验证器的交易，gentx存储在~/.emintd/config/中
 # 测试环境可选：emintd gentx --name node0 --keyring-backend test
@@ -42,23 +42,23 @@ emintd tendermint show-node-id
 第二个节点：
 ```
 # 初始化genesis.json 文件：设置网络别名和chain-id(生成`.emintd`目录，初始化配置文件`config`和数据`data`)
-emintd init node2 --chain-id 2020
+ethermintd init node2 --chain-id 2020
 
 # 客户端设置参数
-emintcli config chain-id 2020
-emintcli config output json
-emintcli config indent true
-emintcli config trust-node true
+ethermintcli config chain-id 2020
+ethermintcli config output json
+ethermintcli config indent true
+ethermintcli config trust-node true
 
-# 测试环境可以执行下方命令，正式环境不用加：emintcli config keyring-backend test
+# 测试环境可以执行下方命令，正式环境不用加：ethermintcli config keyring-backend test
 
 # 创建一个钱包作为您的验证器帐户，钱包名为node1
-emintcli keys add node2
+ethermintcli keys add node2
 
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
 # 注意: 此命令使您可以设置通证数量。确保此帐户有币，这是测试网络上唯一的质押通证
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
-emintd add-genesis-account $(emintcli keys show node2 -a) 100000000000000000000000000photon,100000000000000000000000000stake
+emintd add-genesis-account $(ethermintcli keys show node2 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
 # 生成创建验证器的交易，gentx存储在~/.emintd/config/中
 # 测试环境可选：emintd gentx --name node2 --keyring-backend test
@@ -76,23 +76,23 @@ emintd tendermint show-node-id
 第三个节点：
 ```
 # 初始化genesis.json 文件：设置网络别名和chain-id(生成`.emintd`目录，初始化配置文件`config`和数据`data`)
-emintd init node3 --chain-id 2020
+ethermintd init node3 --chain-id 2020
 
 # 客户端设置参数
-emintcli config chain-id 2020
-emintcli config output json
-emintcli config indent true
-emintcli config trust-node true
+ethermintcli config chain-id 2020
+ethermintcli config output json
+ethermintcli config indent true
+ethermintcli config trust-node true
 
-# 测试环境可选，正式环境不用加：emintcli config keyring-backend test
+# 测试环境可选，正式环境不用加：ethermintcli config keyring-backend test
 
 # 创建一个钱包作为您的验证器帐户，钱包名为node2
-emintcli keys add node3
+ethermintcli keys add node3
 
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
 # 注意: 此命令使您可以设置通证数量。确保此帐户有币，这是测试网络上唯一的质押通证
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
-emintd add-genesis-account $(emintcli keys show node3 -a) 100000000000000000000000000photon,100000000000000000000000000stake
+emintd add-genesis-account $(ethermintcli keys show node3 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
 # 生成创建验证器的交易，gentx存储在~/.emintd/config/中
 # 测试环境可选：emintd gentx --name node3 --keyring-backend test
@@ -110,23 +110,23 @@ emintd tendermint show-node-id
 第四个节点：
 ```
 # 初始化genesis.json 文件：设置网络别名和chain-id(生成`.emintd`目录，初始化配置文件`config`和数据`data`)
-emintd init node4 --chain-id 2020
+ethermintd init node4 --chain-id 2020
 
 # 客户端设置参数
-emintcli config chain-id 2020
-emintcli config output json
-emintcli config indent true
-emintcli config trust-node true
+ethermintcli config chain-id 2020
+ethermintcli config output json
+ethermintcli config indent true
+ethermintcli config trust-node true
 
-# 测试环境可选：emintcli config keyring-backend test
+# 测试环境可选：ethermintcli config keyring-backend test
 
 # 创建一个钱包作为您的验证器帐户，钱包名为node3
-emintcli keys add node4
+ethermintcli keys add node4
 
 # 将该钱包地址添加到genesis文件中的genesis.app_state.accounts数组中
 # 注意: 此命令使您可以设置通证数量。确保此帐户有币，这是测试网络上唯一的质押通证
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
-emintd add-genesis-account $(emintcli keys show node4 -a) 100000000000000000000000000photon,100000000000000000000000000stake
+emintd add-genesis-account $(ethermintcli keys show node4 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
 # 生成创建验证器的交易，gentx存储在~/.emintd/config/中
 # 测试环境可选：emintd gentx --name node3 --keyring-backend test
@@ -439,26 +439,26 @@ tail -f init.log
 接口访问可分为内网访问和公网访问，可以按照安全、性能自行设置
 - 公网访问
 ```shell script
-nohup emintcli rest-server --laddr "tcp://0.0.0.0:8545" > server.log &
+nohup ethermintcli rest-server --laddr "tcp://0.0.0.0:8545" > server.log &
 tail -f server.log
 ```
 - 内网访问
 ```shell script
-nohup emintcli rest-server --laddr "tcp://localhost:8545" > server.log &
+nohup ethermintcli rest-server --laddr "tcp://localhost:8545" > server.log &
 tail -f server.log
 ```
 
 #### 导出ETH私钥
 ```shell script
-emintcli keys unsafe-export-eth-key node1
+ethermintcli keys unsafe-export-eth-key node1
 ```
 
 ### 二、运行全节点
 ```shell script
 # 初始化节点
 # 初始化genesis.json 文件：设置网络别名和chain-id(生成`.emintd`目录，初始化配置文件`config`和数据`data`)
-# eg:emintd init <moniker> --chain-id 2020
-emintd init node5 --chain-id 2020
+# eg:ethermintd init <moniker> --chain-id 2020
+ethermintd init node5 --chain-id 2020
 
 
 # 下载多节点测试网络任意一个节点的 config.toml 和 genesis.json
@@ -470,8 +470,8 @@ emintd start
 ### 三、升级成为验证器节点
 ```shell script
 # 创建一个新的密钥（钱包），或通过助记词/密钥库导入已有密钥。执行该命令后输入并确认密码，将生成一个新的密钥。密码至少8个字符。
-# eg:emintcli keys add node5
-emintcli keys add <key-name> <flags>
+# eg:ethermintcli keys add node5
+ethermintcli keys add <key-name> <flags>
 ```
 >注意
 >
@@ -480,11 +480,11 @@ emintcli keys add <key-name> <flags>
 - 从其他地方转入一些币到您刚刚创建的钱包中： 可能会用到以下命令
 ```
 # 查询当前节点的钱包地址
-emintcli keys list
+ethermintcli keys list
 # 查询钱包地址的余额
-emintcli query account <account>
+ethermintcli query account <account>
 # 从其他地方转入一些币到您刚刚创建的钱包
-emintcli tx send cosmos1lpa40757ka492ewy225qmmdcwr3gmdacmjm0yt cosmos1hwp0fss8ngvfrjtsdhxhfrh96xtmclvd36tyk8 2000000stake --chain-id 2020 --fees=2stake
+ethermintcli tx send cosmos1lpa40757ka492ewy225qmmdcwr3gmdacmjm0yt cosmos1hwp0fss8ngvfrjtsdhxhfrh96xtmclvd36tyk8 2000000stake --chain-id 2020 --fees=2stake
 ```
 - 确认节点同步状态
 ```shell script
@@ -492,7 +492,7 @@ emintcli tx send cosmos1lpa40757ka492ewy225qmmdcwr3gmdacmjm0yt cosmos1hwp0fss8ng
 # apt-get update && apt-get install -y jq
 
 # 如果输出为 false, 则表明您的节点已经完成同步
-emintcli status | jq .sync_info.catching_up
+ethermintcli status | jq .sync_info.catching_up
 ```
 - 创建验证器
 
@@ -500,7 +500,7 @@ emintcli status | jq .sync_info.catching_up
 
 下面命令中的moniker、chain_id、key_name设置为自己的
 ```shell script
-emintcli tx staking create-validator \
+ethermintcli tx staking create-validator \
   --amount=1000000stake \
   --pubkey=$(emintd tendermint show-validator) \
   --moniker="node5" \
@@ -514,7 +514,7 @@ emintcli tx staking create-validator \
 ```
 然后查询该交易hash结果查看是否成功成为验证器
 ```
-emintcli query tx 6B913D5635953D7DC2D05DC03807C1433F00CBB1343EA6E0FBE3A8F403981961 | jq
+ethermintcli query tx 6B913D5635953D7DC2D05DC03807C1433F00CBB1343EA6E0FBE3A8F403981961 | jq
 ```
 输出命令
 ```shell script
@@ -615,7 +615,7 @@ I[2020-07-03|18:12:29.029] Committed state                              module=s
 ```
 #### 查看所有验证器
 ```shell script
-emintcli query staking validators
+ethermintcli query staking validators
 ```
 输出以下内容
 ```shell script
