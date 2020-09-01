@@ -1,7 +1,7 @@
 ## Ethermint 部分命令使用指南
 - 删除数据
 
-此命令会删除守护程序`.emintd`和客户端`.emintcli`目录
+此命令会删除守护程序`.ethermintd`和客户端`.ethermintcli`目录
 ```shell script
 rm -rf ~/.emint*
 ```

@@ -39,7 +39,7 @@ emintcli keys add node0
 # 注意: 此命令使您可以设置通证数量。确保此帐户有币，这是测试网络上唯一的质押通证
 ethermintd add-genesis-account $(emintcli keys show node0 -a) 1000000000000000000photon,1000000000000000000stake
 
-# 生成创建验证器的交易，gentx存储在~/.emintd/config/中
+# 生成创建验证器的交易，gentx存储在~/.ethermintd/config/中
 ethermintd gentx --name bhptest2 --keyring-backend test
 
 # 将生成的质押交易添加到创世文件

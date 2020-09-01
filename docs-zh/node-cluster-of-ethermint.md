@@ -7,7 +7,7 @@
 #### 生成四个节点配置
 第一个节点：
 ```
-# 初始化genesis.json 文件：设置网络别名和chain-id(生成`.emintd`目录，初始化配置文件`config`和数据`data`)
+# 初始化genesis.json 文件：设置网络别名和chain-id(生成`.ethermintd`目录，初始化配置文件`config`和数据`data`)
 ethermintd init node1 --chain-id 2020
 
 # 客户端设置参数
@@ -26,7 +26,7 @@ ethermintcli keys add node1
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
 ethermintd add-genesis-account $(ethermintcli keys show node1 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
-# 生成创建验证器的交易，gentx存储在~/.emintd/config/中
+# 生成创建验证器的交易，gentx存储在~/.ethermintd/config/中
 # 测试环境可选：ethermintd gentx --name node0 --keyring-backend test
 ethermintd gentx --name node1
 
@@ -41,7 +41,7 @@ ethermintd tendermint show-node-id
 ```
 第二个节点：
 ```
-# 初始化genesis.json 文件：设置网络别名和chain-id(生成`.emintd`目录，初始化配置文件`config`和数据`data`)
+# 初始化genesis.json 文件：设置网络别名和chain-id(生成`.ethermintd`目录，初始化配置文件`config`和数据`data`)
 ethermintd init node2 --chain-id 2020
 
 # 客户端设置参数
@@ -60,7 +60,7 @@ ethermintcli keys add node2
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
 ethermintd add-genesis-account $(ethermintcli keys show node2 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
-# 生成创建验证器的交易，gentx存储在~/.emintd/config/中
+# 生成创建验证器的交易，gentx存储在~/.ethermintd/config/中
 # 测试环境可选：ethermintd gentx --name node2 --keyring-backend test
 ethermintd gentx --name node2
 
@@ -75,7 +75,7 @@ ethermintd tendermint show-node-id
 ```
 第三个节点：
 ```
-# 初始化genesis.json 文件：设置网络别名和chain-id(生成`.emintd`目录，初始化配置文件`config`和数据`data`)
+# 初始化genesis.json 文件：设置网络别名和chain-id(生成`.ethermintd`目录，初始化配置文件`config`和数据`data`)
 ethermintd init node3 --chain-id 2020
 
 # 客户端设置参数
@@ -94,7 +94,7 @@ ethermintcli keys add node3
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
 ethermintd add-genesis-account $(ethermintcli keys show node3 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
-# 生成创建验证器的交易，gentx存储在~/.emintd/config/中
+# 生成创建验证器的交易，gentx存储在~/.ethermintd/config/中
 # 测试环境可选：ethermintd gentx --name node3 --keyring-backend test
 ethermintd gentx --name node3
 
@@ -109,7 +109,7 @@ ethermintd tendermint show-node-id
 ```
 第四个节点：
 ```
-# 初始化genesis.json 文件：设置网络别名和chain-id(生成`.emintd`目录，初始化配置文件`config`和数据`data`)
+# 初始化genesis.json 文件：设置网络别名和chain-id(生成`.ethermintd`目录，初始化配置文件`config`和数据`data`)
 ethermintd init node4 --chain-id 2020
 
 # 客户端设置参数
@@ -128,7 +128,7 @@ ethermintcli keys add node4
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
 ethermintd add-genesis-account $(ethermintcli keys show node4 -a) 100000000000000000000000000photon,100000000000000000000000000stake
 
-# 生成创建验证器的交易，gentx存储在~/.emintd/config/中
+# 生成创建验证器的交易，gentx存储在~/.ethermintd/config/中
 # 测试环境可选：ethermintd gentx --name node3 --keyring-backend test
 ethermintd gentx --name node4
 
@@ -456,13 +456,13 @@ ethermintcli keys unsafe-export-eth-key node1
 ### 二、运行全节点
 ```shell script
 # 初始化节点
-# 初始化genesis.json 文件：设置网络别名和chain-id(生成`.emintd`目录，初始化配置文件`config`和数据`data`)
+# 初始化genesis.json 文件：设置网络别名和chain-id(生成`.ethermintd`目录，初始化配置文件`config`和数据`data`)
 # eg:ethermintd init <moniker> --chain-id 2020
 ethermintd init node5 --chain-id 2020
 
 
 # 下载多节点测试网络任意一个节点的 config.toml 和 genesis.json
-# 替换当前`~/.emintd/config`目录下的`config.toml`文件和`genesis.json`文件
+# 替换当前`~/.ethermintd/config`目录下的`config.toml`文件和`genesis.json`文件
 
 # 启动节点（也可使用 nohup 或 systemd 等方式后台运行）
 ethermintd start
