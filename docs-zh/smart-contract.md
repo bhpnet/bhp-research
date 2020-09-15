@@ -1,7 +1,7 @@
 
 ## 智能合约
 
-1.IDE开发环境
+### 1. IDE开发环境
 
 - 开发，编译，部署
 
@@ -21,7 +21,7 @@ ATOM 地址： https://atom.io/
 
 Visual Studio Code 地址：https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity
 
-2.开发者工具
+### 2. 开发者工具
 
 Truffle 地址：https://truffleframework.com/
 
@@ -29,16 +29,16 @@ Truffle 地址：https://truffleframework.com/
 
 其它开发工具：https://github.com/ConsenSys/ethereum-developer-tools-list#frameworks
 
-3.前端
+### 3. 前端
 
 web3.js 中文文档：https://web3.tryblockchain.org/Web3.js-api-refrence.html
 web3.js 英文文档：https://web3js.readthedocs.io/en/v1.2.3/
 
-4.库
+### 4. 库
 
 OpenZeppelin 地址：https://openzeppelin.org/
 
-5.账户钱包
+### 5. 账户钱包
 
 - 浏览器插件
 
@@ -60,7 +60,7 @@ geth 地址：https://github.com/ethereum/go-ethereum
 
 Ganache 地址：https://www.trufflesuite.com/ganache
 
-6.部署工具
+### 6. 部署工具
 
 - 编译和部署智能合约，命令行界面
 
@@ -70,7 +70,7 @@ Truffle 地址：https://truffleframework.com/
 
 Remix 地址：https://studio.ethereum.org/
 
-7.测试链
+### 7. 测试链
 
 - 生成模拟测试链
 
@@ -84,19 +84,19 @@ Ganache 地址：https://www.trufflesuite.com/ganache
 
 geth 地址：https://github.com/ethereum/go-ethereum
 
-8.网络
+### 8. 网络
 
 主网
 Ropsten 水管地址：https://faucet.ropsten.be/
 Rinkeby 水管地址：https://faucet.rinkeby.io/
 私链
 
-9.浏览器
+### 9. 浏览器
 
 https://etherscan.io/
 https://www.etherchain.org/
 
-10.节点搭建
+### 10. 节点搭建
 
 - 搭建主链，测试链，私链
 
