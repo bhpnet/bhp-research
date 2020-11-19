@@ -2,6 +2,7 @@
 
 - [docker](docs-zh/install-docker.md)
 - [gaia](docs-zh/deploy-gaia-testnet.md)
+- [geth](docs-zh/geth.md)
 - [tendermint](docs-zh/node-cluster-of-tendermint.md)
 - [ethermint](docs-zh/ethermint.md)
 - [okchain](docs-zh/deploy-okchain-testnet.md)
