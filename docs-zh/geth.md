@@ -260,7 +260,7 @@ enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d66
 
 ## 四、启动节点
 
-```shell script
+```commandline
 # 启动部分命令
 geth --datadir node1/ --syncmode 'full' --port 26681 --rpc --rpcaddr '0.0.0.0' --rpcport 26682 --rpcapi 'personal,db,eth,net,web3,txpool,miner,admin' --rpccorsdomain '*' --networkid 999 --bootnodes "enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d662559e9e7389d66f8e31b570f4a0c5fc7e1bd84548270099de05d0c12@127.0.0.1:0?discport=26690" --gasprice '1' --unlock '0xD68066d2292b9e80FdE6904447A044050ca3fA3C'  --password node1/password.txt  --mine --allow-insecure-unlock
 
