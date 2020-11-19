@@ -275,3 +275,11 @@ geth --datadir node2/ --syncmode 'full' --port 26691 --rpc --rpcaddr '0.0.0.0' -
 
 ```
 
+
+## 参考链接
+
+```log
+https://hackernoon.com/setup-your-own-private-proof-of-authority-ethereum-network-with-geth-9a0a3750cda8
+https://medium.com/@david.chou93/deploy-a-private-ethereum-test-network-b181d1589681
+```
+
