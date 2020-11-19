@@ -1,7 +1,7 @@
 
 # geth 客户端私链入门
 
-## 起步
+## 一、起步
 
 ### 1.1 创建目录
 
@@ -220,16 +220,15 @@ INFO [11-19|11:58:33.586] Saved genesis chain spec                 client=harmon
 
 - 最后Ctrl+C退出
 
-## 三、部署Ethstats
 
-## 初始化节点
+## 二、初始化节点
 
 ```shell script
 geth --datadir node1/ init genesis.json
 geth --datadir node2/ init genesis.json
 ```
 
-## 四、创建一个引导节点
+## 三、创建一个引导节点
 
 引导节点的唯一目的是帮助节点彼此发现
 
@@ -259,19 +258,19 @@ INFO [11-19|16:42:14.896] New local node record                    seq=1 id=eaae
 enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d662559e9e7389d66f8e31b570f4a0c5fc7e1bd84548270099de05d0c12@127.0.0.1:0?discport=26690
 ```
 
-## 启动节点
+## 四、启动节点
 
 ```shell script
+# 启动部分命令
 geth --datadir node1/ --syncmode 'full' --port 26681 --rpc --rpcaddr '0.0.0.0' --rpcport 26682 --rpcapi 'personal,db,eth,net,web3,txpool,miner,admin' --rpccorsdomain '*' --networkid 999 --bootnodes "enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d662559e9e7389d66f8e31b570f4a0c5fc7e1bd84548270099de05d0c12@127.0.0.1:0?discport=26690" --gasprice '1' --unlock '0xD68066d2292b9e80FdE6904447A044050ca3fA3C'  --password node1/password.txt  --mine --allow-insecure-unlock
 
+geth --datadir node2/ --syncmode 'full' --port 26691 --rpc --rpcaddr '0.0.0.0' --rpcport 26692 --rpcapi 'personal,db,eth,net,web3,txpool,miner,admin' --rpccorsdomain '*' --networkid 999 --bootnodes "enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d662559e9e7389d66f8e31b570f4a0c5fc7e1bd84548270099de05d0c12@127.0.0.1:0?discport=26690" --gasprice '1' --unlock '0x30439478508367F4B8dBEC1Df0a1D61169b5a4d1'  --password node2/password.txt  --mine --allow-insecure-unlock
+
+# 启动全面命令
 
 geth --datadir node1/ --syncmode 'full' --gcmode=archive --port 26681 --rpc --rpcaddr '0.0.0.0' --rpcvhosts=* --ws --wsorigins '*' --wsaddr '0.0.0.0' --wsport 26682 --wsapi 'personal,db,eth,net,web3,txpool,miner,network,debug' --rpcport 26682 --rpcapi 'personal,db,eth,net,web3,txpool,miner,network,debug' --bootnodes 'enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d662559e9e7389d66f8e31b570f4a0c5fc7e1bd84548270099de05d0c12@127.0.0.1:0?discport=26690' --networkid 999 --gasprice '1' -unlock '0xD68066d2292b9e80FdE6904447A044050ca3fA3C' --password node1/password.txt --mine --allow-insecure-unlock
 
 geth --datadir node2/ --syncmode 'full' --gcmode=archive --port 26691 --rpc --rpcaddr '0.0.0.0' --rpcvhosts=* --ws --wsorigins '*' --wsaddr '0.0.0.0' --wsport 26692 --wsapi 'personal,db,eth,net,web3,txpool,miner,network,debug' --rpcport 26692 --rpcapi 'personal,db,eth,net,web3,txpool,miner,network,debug' --bootnodes 'enode://971be5aa523115af627483c2c4902079fd9479adeacdc7f59645e49cdbe1d5692754030b4a4d20d318a4b7b15687f12712e15d3545180172115d213d4be1532f@127.0.0.1:26681' --networkid 999 --gasprice '1' -unlock '0x30439478508367F4B8dBEC1Df0a1D61169b5a4d1' --password node2/password.txt --mine --allow-insecure-unlock
-
-
-geth --datadir node2/ --syncmode 'full' --port 26691 --rpc --rpcaddr '0.0.0.0' --rpcport 26692 --rpcapi 'personal,db,eth,net,web3,txpool,miner,admin' --rpccorsdomain '*' --networkid 999 --bootnodes "enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d662559e9e7389d66f8e31b570f4a0c5fc7e1bd84548270099de05d0c12@127.0.0.1:0?discport=26690" --gasprice '1' --unlock '0x30439478508367F4B8dBEC1Df0a1D61169b5a4d1'  --password node2/password.txt  --mine --allow-insecure-unlock
-
 
 ```
 
