@@ -51,11 +51,19 @@ GOPATH=/root/goApps
 GOROOT=go
 ```
 
+在`devnet`目录下执行以下命令：将密码保存本地以便后面测试，本案例测试密码为12341234
+
+
+```shell script
+echo '12341234' > node1/password.txt
+echo '12341234' > node2/password.txt
+```
+
 ### 1.2 创建账户
 
 在`devnet`目录下分别创建账户（记住地址和密码）
 
-geth --datadir node1/ account new
+geth --datadir node1/ account new --password node1/password.txt
 
 ```log
 # 日志
@@ -73,7 +81,7 @@ Path of the secret key file: node1/keystore/UTC--2020-11-19T08-31-02.605416348Z-
 - You must BACKUP your key file! Without the key, it's impossible to access account funds!
 - You must REMEMBER your password! Without the password, it's impossible to decrypt the key!
 ```
-geth --datadir node2/ account new
+geth --datadir node2/ account new --password node2/password.txt
 
 ```log
 # 日志
@@ -86,13 +94,6 @@ Path of the secret key file: node2/keystore/UTC--2020-11-19T08-35-07.765933402Z-
 - You must NEVER share the secret key with anyone! The key controls access to your funds!
 - You must BACKUP your key file! Without the key, it's impossible to access account funds!
 - You must REMEMBER your password! Without the password, it's impossible to decrypt the key!
-```
-
-将密码保存本地以便后面测试，本案例测试密码为12341234
-
-```shell script
-echo '12341234' > node1/password.txt
-echo '12341234' > node2/password.txt
 ```
 
 ### 1.3 创建 Genesis 文件
@@ -220,6 +221,77 @@ INFO [11-19|11:58:33.586] Saved genesis chain spec                 client=harmon
 
 - 最后Ctrl+C退出
 
+## 部署Ethstats(这步可以暂时跳过)
+
+```log
+puppeth -network genesis
+
++-----------------------------------------------------------+
+| Welcome to puppeth, your Ethereum private network manager |
+|                                                           |
+| This tool lets you create a new Ethereum network down to  |
+| the genesis block, bootnodes, miners and ethstats servers |
+| without the hassle that it would normally entail.         |
+|                                                           |
+| Puppeth uses SSH to dial in to remote servers, and builds |
+| its network components out of Docker containers using the |
+| docker-compose toolset.                                   |
++-----------------------------------------------------------+
+
+INFO [11-20|10:43:27.530] Administering Ethereum network           name=genesis
+INFO [11-20|10:43:27.532] No remote machines to gather stats from 
+
+What would you like to do? (default = stats)
+ 1. Show network stats
+ 2. Manage existing genesis
+ 3. Track new remote server
+ 4. Deploy network components
+> 4
+
+What would you like to deploy? (recommended order)
+ 1. Ethstats  - Network monitoring tool
+ 2. Bootnode  - Entry point of the network
+ 3. Sealer    - Full node minting new blocks
+ 4. Explorer  - Chain analysis webservice
+ 5. Wallet    - Browser wallet for quick sends
+ 6. Faucet    - Crypto faucet to give away funds
+ 7. Dashboard - Website listing above web-services
+> 1
+
+Which server do you want to interact with?
+ 1. Connect another server
+> 1
+
+What is the remote server's address ([username[:identity]@]hostname[:port])?
+> root@101.133.225.179
+WARN [11-20|10:49:33.222] No SSH key, falling back to passwords    path=/root/.ssh/id_rsa err="open /root/.ssh/id_rsa: no such file or directory"
+
+The authenticity of host '101.133.225.179:22 (101.133.225.179:22)' can't be established.
+SSH key fingerprint is 4b:5c:f9:e5:34:b6:81:f6:8e:b8:0f:e6:83:f8:9b:93 [MD5]
+Are you sure you want to continue connecting (yes/no)? yes
+What's the login password for root at root@101.133.225.179? (won't be echoed)
+> 
+
+Which port should ethstats listen on? (default = 80)
+> 26682
+
+Allow sharing the port with other services (y/n)? (default = yes)
+> yes
+INFO [11-20|10:50:30.976] Deploying nginx reverse-proxy            server=101.133.225.179 port=26682
+Creating network "genesis_default" with the default driver
+Building nginx
+Step 1/1 : FROM jwilder/nginx-proxy
+latest: Pulling from jwilder/nginx-proxy
+Digest: sha256:695db064e3c07ed052ea887b853ffba07e8f0fbe96dc01aa350a0d202746926b
+Status: Downloaded newer image for jwilder/nginx-proxy:latest
+ ---> 509ff2fb81dd
+Successfully built 509ff2fb81dd
+Successfully tagged genesis/nginx:latest
+Creating genesis_nginx_1 ... done
+
+Proxy deployed, which domain to assign? (default = 101.133.225.179)
+>
+```
 
 ## 二、初始化节点
 
@@ -261,7 +333,9 @@ enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d66
 ## 四、启动节点
 
 ```commandline
+
 # 启动部分命令
+
 geth --datadir node1/ --syncmode 'full' --port 26681 --rpc --rpcaddr '0.0.0.0' --rpcport 26682 --rpcapi 'personal,db,eth,net,web3,txpool,miner,admin' --rpccorsdomain '*' --networkid 999 --bootnodes "enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d662559e9e7389d66f8e31b570f4a0c5fc7e1bd84548270099de05d0c12@127.0.0.1:0?discport=26690" --gasprice '1' --unlock '0xD68066d2292b9e80FdE6904447A044050ca3fA3C'  --password node1/password.txt  --mine --allow-insecure-unlock
 
 geth --datadir node2/ --syncmode 'full' --port 26691 --rpc --rpcaddr '0.0.0.0' --rpcport 26692 --rpcapi 'personal,db,eth,net,web3,txpool,miner,admin' --rpccorsdomain '*' --networkid 999 --bootnodes "enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d662559e9e7389d66f8e31b570f4a0c5fc7e1bd84548270099de05d0c12@127.0.0.1:0?discport=26690" --gasprice '1' --unlock '0x30439478508367F4B8dBEC1Df0a1D61169b5a4d1'  --password node2/password.txt  --mine --allow-insecure-unlock
@@ -274,6 +348,11 @@ geth --datadir node2/ --syncmode 'full' --gcmode=archive --port 26691 --rpc --rp
 
 ```
 
+- 每个节点使用不同的`--port`＆`rpcport`（如果您对每个节点使用不同的计算机，则不需要）。
+
+- `--unlock` 定义该节点代表哪个帐户（管理员）。
+
+- `--ethstats` 允许您在Ethstats上跟踪该节点的状态
 
 ## 参考链接
 
