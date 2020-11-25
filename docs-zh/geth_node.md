@@ -87,3 +87,28 @@ null
 null
 ```
 
+## 错误集合
+
+一、出现`invalid merkle root`错误
+
+```log
+##############################
+ 
+WARN [11-25|16:04:01.074] Synchronisation failed, dropping peer    peer=31aa8d6c71638483 err="retrieved hash chain is invalid: invalid merkle root (remote: 96b5f123990e42e71c8928f6059bfceb0380e2e57b30a40f00fc14a17c869dbf local: 59de14dd5cb4ee5caeb511bb720866e66dd6ed9bd9778709a949e84850e99ae3)"
+INFO [11-25|16:04:01.074] Commit new mining work                   number=10005 sealhash="49ed1a…2149a2" uncles=0 txs=0  gas=0      fees=0        elapsed="143.575µs"
+INFO [11-25|16:04:01.074] Signed recently, must wait for others 
+INFO [11-25|16:04:01.074] Looking for peers                        peercount=2 tried=2 static=0
+INFO [11-25|16:04:01.077] Commit new mining work                   number=10005 sealhash="0c14c3…b4d902" uncles=0 txs=40 gas=840000 fees=8.4e-12  elapsed=2.787ms
+INFO [11-25|16:04:01.077] Signed recently, must wait for others 
+```
+
+此错误如果不是enode有效问题，可以回滚几个区块试试
+
+比如上面是10005打包出错，重置到10000高度，参数写为其16进制加0x的字符串格式
+
+```log
+debug.setHead("0x2710")
+null
+```
+
+

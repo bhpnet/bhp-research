@@ -253,3 +253,20 @@ MISC OPTIONS:
 COPYRIGHT:
    Copyright 2013-2020 The go-ethereum Authors
 ```
+
+txpool 管理
+
+```shell script
+TRANSACTION POOL OPTIONS:
+  --txpool.locals value               Comma separated accounts to treat as locals (no flush, priority inclusion)
+  --txpool.nolocals                   Disables price exemptions for locally submitted transactions
+  --txpool.journal value              Disk journal for local transaction to survive node restarts (default: "transactions.rlp")
+  --txpool.rejournal value            Time interval to regenerate the local transaction journal (default: 1h0m0s)
+  --txpool.pricelimit value           Minimum gas price limit to enforce for acceptance into the pool (default: 1)
+  --txpool.pricebump value            Price bump percentage to replace an already existing transaction (default: 10)
+  --txpool.accountslots value         Minimum number of executable transaction slots guaranteed per account (default: 16)
+  --txpool.globalslots value          Maximum number of executable transaction slots for all accounts (default: 4096)
+  --txpool.accountqueue value         Maximum number of non-executable transaction slots permitted per account (default: 64)
+  --txpool.globalqueue value          Maximum number of non-executable transaction slots for all accounts (default: 1024)
+  --txpool.lifetime value             Maximum amount of time non-executable transaction are queued (default: 3h0m0s)
+```
