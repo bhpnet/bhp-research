@@ -368,7 +368,9 @@ geth --datadir node2/ --syncmode 'full' --gcmode=archive --port 26691 --rpc --rp
 
 - `--ethstats` 允许您在Ethstats上跟踪该节点的状态
 
-## 五、启动节点
+## 五、节点连接
+
+[加入共识节点](./geth_node.md)
 
 ## 参考链接
 
