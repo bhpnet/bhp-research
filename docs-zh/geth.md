@@ -25,6 +25,16 @@ make all
 vim ~/.profile 
 ```
 
+额外补充
+
+```commandline
+git clone https://gitee.com/bhpnet/bhpeth.git
+cd bhpeth
+git checkout v1.9.24-bhp1
+make all
+vim ~/.profile 
+```
+
 - 添加目录然后保存
 ```
 export PATH=$PATH:/root/devnet/go-ethereum/build/bin
@@ -63,7 +73,11 @@ echo '12341234' > node2/password.txt
 
 在`devnet`目录下分别创建账户（记住地址和密码）
 
+
+```commandline
 geth --datadir node1/ account new --password node1/password.txt
+```
+
 
 ```log
 # 日志
@@ -353,6 +367,8 @@ geth --datadir node2/ --syncmode 'full' --gcmode=archive --port 26691 --rpc --rp
 - `--unlock` 定义该节点代表哪个帐户（管理员）。
 
 - `--ethstats` 允许您在Ethstats上跟踪该节点的状态
+
+## 五、启动节点
 
 ## 参考链接
 
