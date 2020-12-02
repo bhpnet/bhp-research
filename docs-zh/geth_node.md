@@ -11,14 +11,11 @@
 
 ### 添加节点
 
-开启一个新终端窗口，运行下面命令查看`node1`的 `enode` 字符串
+- 准备
 
-```shell script
-geth --exec 'admin.nodeInfo.enode' attach node1/geth.ipc
-"enode://241a5bfdc880636ae7bc9da6292a6b1f8db81e1c87df2d81a9eef8f852aa260e669c2543a6584e34981dbb0d2c7b06edcb5334135b71a4ee00efdc38bf2e7699@127.0.0.1:26681"
-```
+提前获取到该网络的`genesis.json`文件
 
-创建`node4`
+- 创建`node4`
 
 ```shell script
 mkdir node4
@@ -43,6 +40,23 @@ Path of the secret key file: node4/keystore/UTC--2020-11-24T09-39-42.399924729Z-
 ```
 
 ### 启动节点
+
+- 准备
+
+获取该网络的`enode` 字符串和网络ID`networkid`
+
+- 开启一个新终端窗口，运行下面命令查看`node1`的 `enode` 字符串
+
+```shell script
+geth --exec 'admin.nodeInfo.enode' attach node1/geth.ipc
+"enode://241a5bfdc880636ae7bc9da6292a6b1f8db81e1c87df2d81a9eef8f852aa260e669c2543a6584e34981dbb0d2c7b06edcb5334135b71a4ee00efdc38bf2e7699@127.0.0.1:26681"
+```
+
+- 启动geth
+
+>--port：指定rpc端口
+>--password：node4/password.txt
+>-unlock：要解锁的钱包地址
 
 ```shell script
 geth --datadir node4/ --syncmode 'full' --gcmode=archive --port 26671 --rpc --rpcaddr '0.0.0.0' --rpcvhosts=* --ws --wsorigins '*' --wsaddr '0.0.0.0' --wsport 26672 --wsapi 'personal,db,eth,net,web3,txpool,miner,network,debug' --rpcport 26672 --rpcapi 'personal,db,eth,net,web3,txpool,miner,network,debug' --bootnodes 'enode://10b89d31a13d672c3b5b1c27441089e84921c47de304e24ede773cafb935862473250a5f6c8621c738002e47003eefba97999cdfde91c8a1614d1a36f83b8c50@172.19.166.129:0?discport=26690' --networkid 999 --gasprice '1' -unlock '0xFE35176AE93c44C32DE90468fb51Cf1C6AAf0ed8' --password node4/password.txt --mine --allow-insecure-unlock
@@ -232,6 +246,12 @@ admin.nodeInfo
 
 ```shell script
 net.peerCount
+```
+
+- 备份导入
+
+```shell script
+
 ```
 
 如果返回空值，表示交易全部完成。

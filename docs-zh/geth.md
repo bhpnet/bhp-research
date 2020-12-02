@@ -11,54 +11,43 @@ cd devnet
 mkdir node1 node2
 
 # 下载geth
-git clone https://gitee.com/bhpnet/go-ethereum.git
+git clone https://gitee.com/bhpnet/bhpeth.git
 
-cd go-ethereum
+cd bhpeth
 
 # 切换到最新稳定分支
-git checkout v1.9.24
+git checkout v1.9.24-bhp2
 
 # 编译执行文件
 make all
 
-# 把执行文件加到全局配置
-vim ~/.profile 
+# 把执行文件位置加到全局配置
+vim /etc/profile
 ```
 
-额外补充
-
-```commandline
-git clone https://gitee.com/bhpnet/bhpeth.git
-cd bhpeth
-git checkout v1.9.24-bhp1
-make all
-vim ~/.profile 
+- 添加此变量然后保存
 ```
-
-- 添加目录然后保存
-```
-export PATH=$PATH:/root/devnet/go-ethereum/build/bin
+export PATH=$PATH:/root/devnet/bhpnet/build/bin
 ```
 
 - 刷新
 ```
-source ~/.profile
+source /etc/profile
 ```
 
-- 查看版本
+- 查看版本(注意Commit记录要一致)
 
 ```shell script
-geth version
-
 Geth
 Version: 1.9.24-stable
-Git Commit: cc05b050df5f88e80bb26aaf6d2f339c49c2d702
+Git Commit: 941620e90616ddb17ec4663f1b03ade1a410e3dd
 Architecture: amd64
 Protocol Versions: [65 64 63]
 Go Version: go1.14.3
 Operating System: linux
 GOPATH=/root/goApps
 GOROOT=go
+You have new mail in /var/mail/root
 ```
 
 在`devnet`目录下执行以下命令：将密码保存本地以便后面测试，本案例测试密码为12341234
@@ -73,11 +62,9 @@ echo '12341234' > node2/password.txt
 
 在`devnet`目录下分别创建账户（记住地址和密码）
 
-
-```commandline
+```shell script
 geth --datadir node1/ account new --password node1/password.txt
 ```
-
 
 ```log
 # 日志
@@ -95,6 +82,7 @@ Path of the secret key file: node1/keystore/UTC--2020-11-19T08-31-02.605416348Z-
 - You must BACKUP your key file! Without the key, it's impossible to access account funds!
 - You must REMEMBER your password! Without the password, it's impossible to decrypt the key!
 ```
+
 geth --datadir node2/ account new --password node2/password.txt
 
 ```log
@@ -324,7 +312,6 @@ geth --datadir node2/ init genesis.json
 bootnode -genkey boot.key
 ```
 
-
 - 启动bootnode服务
 
 ```shell script
@@ -346,8 +333,7 @@ enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d66
 
 ## 四、启动节点
 
-```commandline
-
+```shell script
 # 启动部分命令
 
 geth --datadir node1/ --syncmode 'full' --port 26681 --rpc --rpcaddr '0.0.0.0' --rpcport 26682 --rpcapi 'personal,db,eth,net,web3,txpool,miner,admin' --rpccorsdomain '*' --networkid 999 --bootnodes "enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d662559e9e7389d66f8e31b570f4a0c5fc7e1bd84548270099de05d0c12@127.0.0.1:0?discport=26690" --gasprice '1' --unlock '0xD68066d2292b9e80FdE6904447A044050ca3fA3C'  --password node1/password.txt  --mine --allow-insecure-unlock
