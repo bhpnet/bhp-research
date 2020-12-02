@@ -210,17 +210,25 @@ geth attach node4/geth.ipc
 
 ## 其他命令
 
-- 同步状态
-
-```shell script
-eth.syncing
-```
-
 - 列出所有账户
 
 ```shell script
 > personal.listAccounts
 ["0xfe35176ae93c44c32de90468fb51cf1c6aaf0ed8"]
+```
+
+- 解锁账户
+
+指定过期时间，单位是秒
+
+```
+personal.unlockAccount(eth.accounts[0],"password")
+```
+
+- 同步状态
+
+```shell script
+eth.syncing
 ```
 
 - 查看默认矿工账户
@@ -248,21 +256,76 @@ admin.nodeInfo
 net.peerCount
 ```
 
-- 备份导入
+- 备份数据
+
+备份之前先关闭当前节点
 
 ```shell script
-
+geth export chaindata.gz 0 1000 --datadir node1 --syncmode "fast" --cache 1024
 ```
 
 如果返回空值，表示交易全部完成。
+
+```shell script
+geth --datadir node1/ --syncmode 'full' --gcmode=archive --port 26671 --rpc --rpcaddr '0.0.0.0' --rpcvhosts=* --ws --wsorigins '*' --wsaddr '0.0.0.0' --wsport 26672 --wsapi 'personal,db,eth,net,web3,txpool,miner,network,debug' --rpcport 26672 --rpcapi 'personal,db,eth,net,web3,txpool,miner,network,debug' --bootnodes 'enode://10b89d31a13d672c3b5b1c27441089e84921c47de304e24ede773cafb935862473250a5f6c8621c738002e47003eefba97999cdfde91c8a1614d1a36f83b8c50@172.19.166.129:0?discport=26694' --networkid 999 --gasprice '1' -unlock '0x5ce02ebb2b0f93b79ef1415717d559f915ade830' --password node1/password.txt --mine --allow-insecure-unlock
+```
+
+日志
+
+```log
+INFO [12-02|17:57:49.768] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [12-02|17:57:49.768] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+INFO [12-02|17:57:49.770] Set global gas cap                       cap=25000000
+INFO [12-02|17:57:49.770] Allocated cache and file handles         database=/bhp/devnet/node1/geth/chaindata cache=512.00MiB handles=32767
+INFO [12-02|17:57:52.936] Opened ancient database                  database=/bhp/devnet/node1/geth/chaindata/ancient
+INFO [12-02|17:57:53.016] Loaded most recent local header          number=44155 hash="bfd222…b3215d" td=83993 age=10m33s
+INFO [12-02|17:57:53.016] Loaded most recent local full block      number=44155 hash="bfd222…b3215d" td=83993 age=10m33s
+INFO [12-02|17:57:53.016] Loaded most recent local fast block      number=44155 hash="bfd222…b3215d" td=83993 age=10m33s
+INFO [12-02|17:57:53.042] Exporting blockchain                     file=chaindata.gz
+INFO [12-02|17:57:53.042] Exporting batch of blocks                count=1001
+INFO [12-02|17:57:53.127] Exported blockchain to                   file=chaindata.gz
+Export done in 85.528418ms
+You have new mail in /var/mail/root
+```
+
+- 导入数据
+
+1. 如果是测试并且之前同步过数据，删除`node1`下的`geth`目录
+
+2. 重新初始化
+
+```shell script
+geth --datadir node1 init genesis.json
+```
+
+3. 执行导入命令
+
+```
+geth import chaindata.gz --datadir "node1" --syncmode "fast" --cache 1024
+```
+
+日志
+
+```log
+INFO [12-02|18:20:42.636] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [12-02|18:20:42.636] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+INFO [12-02|18:20:42.637] Set global gas cap                       cap=25000000
+INFO [12-02|18:20:42.637] Allocated cache and file handles         database=/bhp/devnet/node1/geth/chaindata cache=512.00MiB handles=32767
+INFO [12-02|18:20:42.666] Opened ancient database                  database=/bhp/devnet/node1/geth/chaindata/ancient
+INFO [12-02|18:20:42.667] Loaded most recent local header          number=0 hash="e13f27…fd1a59" td=1 age=1w1d22h
+INFO [12-02|18:20:42.667] Loaded most recent local full block      number=0 hash="e13f27…fd1a59" td=1 age=1w1d22h
+INFO [12-02|18:20:42.667] Loaded most recent local fast block      number=0 hash="e13f27…fd1a59" td=1 age=1w1d22h
+INFO [12-02|18:20:42.667] Importing blockchain                     file=chaindata.gz
+INFO [12-02|18:20:43.854] Stored checkpoint snapshot to disk       number=0 hash="e13f27…fd1a59"
+INFO [12-02|18:20:51.900] Imported new chain segment               blocks=1440 txs=42401 mgas=890.421 elapsed=8.048s mgasps=110.627 number=1440 hash="b29eed…b3fdce" age=5d26m3s dirty=39.77MiB
+INFO [12-02|18:20:59.925] Imported new chain segment               blocks=197  txs=37721 mgas=792.141 elapsed=8.024s mgasps=98.711  number=1637 hash="192535…439caa" age=4d23h53m dirty=57.99MiB
+```
 
 ## 错误集合
 
 一、出现`invalid merkle root`错误
 
 ```log
-##############################
- 
 WARN [11-25|16:04:01.074] Synchronisation failed, dropping peer    peer=31aa8d6c71638483 err="retrieved hash chain is invalid: invalid merkle root (remote: 96b5f123990e42e71c8928f6059bfceb0380e2e57b30a40f00fc14a17c869dbf local: 59de14dd5cb4ee5caeb511bb720866e66dd6ed9bd9778709a949e84850e99ae3)"
 INFO [11-25|16:04:01.074] Commit new mining work                   number=10005 sealhash="49ed1a…2149a2" uncles=0 txs=0  gas=0      fees=0        elapsed="143.575µs"
 INFO [11-25|16:04:01.074] Signed recently, must wait for others 
