@@ -3,6 +3,16 @@
 
 ## 一、起步
 
+首先安装golang1.15+ 和git
+
+> 注意：国内安装需要设置go代理：
+
+```shell script
+echo "export GO111MODULE=on" >> ~/.profile
+echo "export GOPROXY=https://goproxy.cn" >> ~/.profile
+source ~/.profile
+```
+
 ### 1.1 创建目录
 
 ```shell script
@@ -16,7 +26,7 @@ git clone https://gitee.com/bhpnet/bhpeth.git
 cd bhpeth
 
 # 切换到最新稳定分支
-git checkout v1.9.24-bhp2
+git checkout v1.9.24-bhp3
 
 # 编译执行文件
 make all
@@ -27,6 +37,7 @@ vim /etc/profile
 
 - 添加此变量然后保存
 ```
+# /root/devnet/bhpnet/build/bin为编译后执行文件的目录，仅供参考
 export PATH=$PATH:/root/devnet/bhpnet/build/bin
 ```
 
@@ -62,6 +73,8 @@ echo '12341234' > node2/password.txt
 
 在`devnet`目录下分别创建账户（记住地址和密码）
 
+在node1中生成账户
+
 ```shell script
 geth --datadir node1/ account new --password node1/password.txt
 ```
@@ -83,7 +96,11 @@ Path of the secret key file: node1/keystore/UTC--2020-11-19T08-31-02.605416348Z-
 - You must REMEMBER your password! Without the password, it's impossible to decrypt the key!
 ```
 
+在node2中生成账户
+
+```shell script
 geth --datadir node2/ account new --password node2/password.txt
+```
 
 ```log
 # 日志
