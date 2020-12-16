@@ -350,6 +350,27 @@ enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d66
 
 ## 四、启动节点
 
+--networkid value                   Explicitly set network id (integer)(For testnets: use --ropsten, --rinkeby, --goerli instead) (default: 1)
+--datadir value                     Data directory for the databases and keystore (default: "/root/.ethereum")
+--bootnodes value                   Comma separated enode URLs for P2P discovery bootstrap
+--http                              Enable the HTTP-RPC server
+--http.addr value                   HTTP-RPC server listening interface (default: "localhost")
+--http.port value                   HTTP-RPC server listening port (default: 8545)
+--http.api value                    API's offered over the HTTP-RPC interface
+--http.corsdomain value             Comma separated list of domains from which to accept cross origin requests (browser enforced)
+--http.vhosts value                 Comma separated list of virtual hostnames from which to accept requests (server enforced). Accepts '*' wildcard. (default: "localhost")
+--ws                                Enable the WS-RPC server
+--ws.addr value                     WS-RPC server listening interface (default: "localhost")
+--ws.port value                     WS-RPC server listening port (default: 8546)
+--ws.api value                      API's offered over the WS-RPC interface
+--ws.origins value                  Origins from which to accept websockets requests
+--mine                              Enable mining
+--unlock value                      Comma separated list of accounts to unlock
+--password value                    Password file to use for non-interactive password input
+--signer value                      External signer (url or path to ipc file)
+--allow-insecure-unlock             Allow insecure account unlocking when account-related RPCs are exposed by http
+
+
 ```shell script
 # 启动部分命令
 geth --datadir node1/ --syncmode 'full' --port 26681 --http --http.addr '0.0.0.0' --http.port 26682 --http.vhosts '*' --networkid 999 --bootnodes "enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d662559e9e7389d66f8e31b570f4a0c5fc7e1bd84548270099de05d0c12@127.0.0.1:0?discport=26690" --gasprice '1' --unlock '0xD68066d2292b9e80FdE6904447A044050ca3fA3C'  --password node1/password.txt  --mine --allow-insecure-unlock
@@ -363,12 +384,6 @@ geth --datadir node1/ --syncmode 'full' --gcmode=archive --port 26681 --http --h
 geth --datadir node2/ --syncmode 'full' --gcmode=archive --port 26691 ---http --http.addr '0.0.0.0' --http.port 26692 --http.vhosts '*' --ws --ws.addr '0.0.0.0' --ws.port 26682 --ws.origins '*' --bootnodes "enode://7f6bf28538ce1c28112483a7776de8af8bb26ece7f54e1545dc379f15e662aba49f60d662559e9e7389d66f8e31b570f4a0c5fc7e1bd84548270099de05d0c12@127.0.0.1:0?discport=26690" --networkid 999 --gasprice '1' -unlock '0x30439478508367F4B8dBEC1Df0a1D61169b5a4d1' --password node2/password.txt --mine --allow-insecure-unlock
 
 ```
-
-- 每个节点使用不同的`--port`＆`rpcport`（如果您对每个节点使用不同的计算机，则不需要）。
-
-- `--unlock` 定义该节点代表哪个帐户（管理员）。
-
-- `--ethstats` 允许您在Ethstats上跟踪该节点的状态
 
 ## 五、节点连接
 
