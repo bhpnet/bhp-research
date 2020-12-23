@@ -1,6 +1,10 @@
 
 # geth 客户端私链入门
 
+bhpNet：所有修改了的地方
+bhpDM：后期可能还要修改的地方
+bhpNot：暂时不用的
+
 ## 一、起步
 
 首先安装golang1.15+ 和git
@@ -394,5 +398,33 @@ geth --datadir node2/ --syncmode 'full' --gcmode=archive --port 26691 ---http --
 ```log
 https://hackernoon.com/setup-your-own-private-proof-of-authority-ethereum-network-with-geth-9a0a3750cda8
 https://medium.com/@david.chou93/deploy-a-private-ethereum-test-network-b181d1589681
+```
+
+## geth 常用命令
+
+- 启动交互式JavaScript环境（连接到节点）
+
+```shell
+geth attach node/geth.ipc
+```
+
+- 启动bhp测试网
+
+```shell
+geth --datadir node --bhp
+```
+
+- 回滚数据
+
+参数为16进制，比如区块编号：37550，0x92ae
+
+```shell
+debug.setHead("0x92ae")
+```
+
+- 添加节点
+
+```shell
+admin.addPeer("enode://bf30bfe46abf05e5231dfa580118d04b626086f64cfffe617302e07585a3d9075428cf9d1d97506a02091e0d45a599cfb67808f89cdc2796d81a42e03498c9fa@47.103.38.41:26693")
 ```
 

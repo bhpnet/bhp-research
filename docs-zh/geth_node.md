@@ -107,6 +107,13 @@ null
 null
 ```
 
+5. 删除验证者节点
+
+```shell script
+>clique.propose("0xfe35176ae93c44c32de90468fb51cf1c6aaf0ed8",false)
+null
+```
+
 ## 连接共识节点的enode接口
 
 ### 共识节点提供enode接口
@@ -204,8 +211,15 @@ admin.addPeer('enode://9f6490ffb5236f2ddc5710ae73d47c740e0a3644bbd2d67029cf4a6c4
 
 5. 启动自己的交互式JavaScript环境（连接到节点）
 
-```commandline
+```shell script
 geth attach node4/geth.ipc
+```
+
+6. 查看是否已经成为共识节点
+
+```shell script
+clique.getSigners()
+["0x0000d36196f6975703a38ff316b6e407040d440f", "0x0941a01ab7b3a39ed6f55d6a4907778a3f15e5c9", "0x2d2d68a59880eaacf24b96731956d287482dac4b", "0x7391effa2acdb0ff9293e0a5f5e3acedfabedd71", "0xabcdef6d74280c51d3ee01393a81750c1c2b5bd9", "0xffffa1fa8de856811719650bae432921203bf7ab"]
 ```
 
 ## 其他命令
@@ -213,7 +227,7 @@ geth attach node4/geth.ipc
 - 列出所有账户
 
 ```shell script
-> personal.listAccounts
+personal.listAccounts
 ["0xfe35176ae93c44c32de90468fb51cf1c6aaf0ed8"]
 ```
 
